@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shivam-weds-krina",
+  "compatibility_date": "2026-09-22",
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./.output/public",
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

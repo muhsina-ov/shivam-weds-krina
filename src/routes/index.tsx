@@ -29,20 +29,38 @@ import { ScrollTrigger, useGSAP } from "@/lib/motion";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dr Shivam & Dr Krina — Wedding Invitation | Groom Side" },
+      { title: "Dr. Shivam Mehta & Dr. Krina Morabia — Wedding Invitation | Groom Side" },
       {
         name: "description",
         content:
-          "Official groom-side wedding invitation of Dr Shivam Mehta & Dr Krina Morabia. Celebrations from 20 to 22 November 2026.",
+          "Official groom-side wedding invitation of Dr. Shivam Mehta & Dr. Krina Morabia. Celebrations from 20 to 22 November 2026. Join the Mehta & Morabia families in celebration.",
       },
-      { property: "og:title", content: "Dr Shivam & Dr Krina — Wedding Invitation" },
+      { property: "og:site_name", content: "InviteStory" },
+      { property: "og:title", content: "Dr. Shivam Mehta & Dr. Krina Morabia — Wedding Invitation" },
       {
         property: "og:description",
         content:
-          "Warmly inviting you to celebrate the wedding festivities of Dr Shivam Mehta and Dr Krina Morabia.",
+          "Together with their families, Dr. Shivam Mehta & Dr. Krina Morabia warmly invite you to celebrate their wedding on 20, 21 & 22 November 2026.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://shivam-weds-krina.invitestory.in/" },
+      { property: "og:image", content: "https://shivam-weds-krina.invitestory.in/og-image.jpg" },
+      { property: "og:image:secure_url", content: "https://shivam-weds-krina.invitestory.in/og-image.jpg" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Dr. Shivam Mehta & Dr. Krina Morabia Wedding Invitation — 20 to 22 November 2026",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dr. Shivam Mehta & Dr. Krina Morabia — Wedding Invitation" },
+      {
+        name: "twitter:description",
+        content:
+          "Official groom-side wedding invitation of Dr. Shivam Mehta & Dr. Krina Morabia. Celebrations on 20, 21 & 22 November 2026.",
+      },
+      { name: "twitter:image", content: "https://shivam-weds-krina.invitestory.in/og-image.jpg" },
     ],
   }),
   component: Invitation,
