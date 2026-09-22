@@ -1,0 +1,522 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-deep: var(--deep);
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Marcellus", serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Vermilion & gold wedding palette */
+  --background: oklch(0.44 0.17 34);
+  --foreground: oklch(0.95 0.05 82);
+  --card: oklch(0.41 0.16 33);
+  --card-foreground: oklch(0.95 0.05 82);
+  --popover: oklch(0.41 0.16 33);
+  --popover-foreground: oklch(0.95 0.05 82);
+  --primary: oklch(0.84 0.11 82);
+  --primary-foreground: oklch(0.34 0.14 33);
+  --secondary: oklch(0.5 0.16 36);
+  --secondary-foreground: oklch(0.95 0.05 82);
+  --muted: oklch(0.47 0.15 34);
+  --muted-foreground: oklch(0.86 0.06 78);
+  --accent: oklch(0.78 0.13 70);
+  --accent-foreground: oklch(0.34 0.14 33);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.01 82);
+  --border: oklch(0.78 0.11 78 / 35%);
+  --input: oklch(0.78 0.11 78 / 35%);
+  --ring: oklch(0.84 0.11 82);
+  --gold: oklch(0.86 0.12 84);
+  --gold-soft: oklch(0.93 0.07 86);
+  --deep: oklch(0.3 0.12 32);
+}
+
+.dark {
+  --background: oklch(0.36 0.15 33);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility gold-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--gold-soft) 0%,
+    var(--gold) 35%,
+    oklch(0.72 0.13 62) 55%,
+    var(--gold-soft) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility gold-rule {
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--gold) 50%, transparent);
+}
+
+@utility paper {
+  background-color: var(--card);
+  background-image: radial-gradient(circle at 30% 20%, oklch(0.5 0.16 36 / 55%), transparent 60%);
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 30px 70px -30px oklch(0.2 0.1 30 / 70%);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(var(--drift, 40px), 110vh, 0) rotate(420deg);
+    opacity: 0;
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@utility float-slow {
+  animation: soft-float 6s ease-in-out infinite;
+}
+
+@utility shimmer-line {
+  background-image: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3.5s linear infinite;
+}
+
+.scratch-card {
+  box-shadow:
+    inset 0 1px 0 oklch(0.96 0.06 84 / 35%),
+    0 22px 55px -25px oklch(0.2 0.1 30 / 90%);
+}
+
+.scratch-card-revealed {
+  border-color: oklch(0.9 0.1 84 / 75%);
+  box-shadow:
+    0 0 0 1px oklch(0.9 0.1 84 / 15%),
+    0 0 60px oklch(0.86 0.12 84 / 18%),
+    0 25px 70px -28px oklch(0.2 0.1 30 / 90%);
+  transform: translateY(-3px) scale(1.015);
+}
+
+.portrait-lens {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --light-x: 50%;
+  --light-y: 50%;
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 180ms ease-out;
+  box-shadow: 0 40px 90px -35px oklch(0.2 0.12 30 / 95%);
+}
+
+.portrait-light {
+  background:
+    radial-gradient(
+      circle at var(--light-x) var(--light-y),
+      transparent 0 10%,
+      oklch(0.9 0.1 80 / 16%) 20%,
+      transparent 42%
+    ),
+    linear-gradient(to top, oklch(0.2 0.1 30 / 55%), transparent 45%);
+  mix-blend-mode: screen;
+}
+
+.palace-reveal img {
+  transform: scale(1.08);
+  transition: transform 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.palace-curtain {
+  transition: transform 1.8s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.palace-visible .palace-curtain-left {
+  transform: translateX(-101%);
+}
+
+.palace-visible .palace-curtain-right {
+  transform: translateX(101%);
+}
+
+.palace-visible img {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-lens,
+  .palace-reveal img,
+  .palace-curtain,
+  .scratch-card {
+    transition-duration: 1ms !important;
+    transform: none !important;
+  }
+}
+
+/* --- Motion utilities added for the GSAP-driven interactions --- */
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.04);
+  }
+}
+
+@utility ken-burns-bg {
+  animation: ken-burns 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}
+
+@utility ripple-anim {
+  animation: ripple 700ms ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes flip-in-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes flip-out-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@utility flip-stack {
+  perspective: 600px;
+}
+
+@utility flip-face {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+@keyframes hold-arc {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility hold-arc-anim {
+  animation: hold-arc 600ms linear forwards;
+}
+
+@keyframes bullet-pulse {
+  0%,
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.18);
+  }
+}
+
+@utility bullet-pulse-anim {
+  animation: bullet-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility fade-rise {
+  animation: fade-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reduced motion: collapse every CSS animation/transition to ~0 ms.
+   This is a safety net — components gate individually via useMotionOk(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Diya ceremony --- */
+
+.diya-ambient {
+  background:
+    radial-gradient(circle at 50% 48%, oklch(0.93 0.12 78 / 26%), transparent 15%),
+    radial-gradient(ellipse at 50% 65%, oklch(0.73 0.17 50 / 18%), transparent 48%);
+  transition: opacity 1.2s ease-out;
+}
+
+.diya-stage-lit .diya-ambient {
+  opacity: 1;
+}
+
+.wick-aura {
+  border: 1px solid oklch(0.93 0.07 86 / 22%);
+  box-shadow: 0 0 0 0 oklch(0.93 0.1 82 / 0%);
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.wick-aura-active {
+  border-color: oklch(0.96 0.08 86 / 75%);
+  box-shadow:
+    0 0 0 8px oklch(0.93 0.1 82 / 7%),
+    0 0 35px oklch(0.93 0.12 76 / 35%);
+  animation: wick-breathe 700ms ease-in-out infinite alternate;
+}
+
+@keyframes wick-breathe {
+  to {
+    transform: scale(1.12);
+    box-shadow:
+      0 0 0 14px oklch(0.93 0.1 82 / 3%),
+      0 0 48px oklch(0.93 0.12 76 / 48%);
+  }
+}
+
+.diya-holding svg:first-of-type {
+  filter: brightness(1.13) drop-shadow(0 18px 20px rgb(42 12 4 / 0.6));
+}
+
+@keyframes ember-release {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.3);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--ember-x)), calc(var(--ember-y) * -1)) scale(0.1);
+  }
+}
+
+.diya-ember {
+  box-shadow: 0 0 9px oklch(0.95 0.12 82 / 90%);
+  animation: ember-release 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes diya-flame-grow {
+  from {
+    opacity: 0;
+    transform: scale(0.2) translateY(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-1px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@utility diya-flame {
+  transform-origin: bottom center;
+  animation: diya-flame-grow 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes diya-flicker {
+  0%,
+  100% {
+    transform: scaleY(1) rotate(-1.5deg);
+    opacity: 0.95;
+  }
+  25% {
+    transform: scaleY(1.05) rotate(0.5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.97) rotate(1.2deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scaleY(1.03) rotate(-0.6deg);
+    opacity: 1;
+  }
+}
+
+@utility diya-flicker {
+  transform-origin: bottom center;
+  animation: diya-flicker 1.6s ease-in-out infinite;
+}
+
+@keyframes lantern-rise {
+  0% {
+    transform: translate(0, 0) scale(calc(var(--depth, 1) * 0.3));
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--alpha, 0.9);
+  }
+  85% {
+    opacity: var(--alpha, 0.9);
+  }
+  100% {
+    transform: translate(var(--drift, 0px), -520px) scale(var(--depth, 1));
+    opacity: 0;
+  }
+}
+
+@utility lantern {
+  position: absolute;
+  bottom: var(--origin-y, 80px);
+  left: var(--origin-x, 50%);
+  width: 14px;
+  height: 18px;
+  margin-left: -7px;
+  background: oklch(0.95 0.06 88);
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  box-shadow:
+    0 0 calc(14px * var(--depth, 1)) oklch(0.93 0.07 86 / 0.55),
+    0 0 calc(28px * var(--depth, 1)) oklch(0.93 0.07 86 / 0.25);
+  filter: blur(var(--blur, 0px));
+  pointer-events: none;
+  animation: lantern-rise 5s ease-out forwards;
+}
+
+@keyframes diya-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@utility diya-glow {
+  animation: diya-pulse 2.4s ease-in-out infinite;
+}
