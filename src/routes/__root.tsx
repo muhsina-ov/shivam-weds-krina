@@ -87,9 +87,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Together with their families, Dr. Shivam Mehta & Dr. Krina Morabia warmly invite you to celebrate their wedding on 20, 21 & 22 November 2026.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://shivam-weds-krina.invitingyou.top/" },
-      { property: "og:image", content: "https://shivam-weds-krina.invitingyou.top/og-image.jpg" },
-      { property: "og:image:secure_url", content: "https://shivam-weds-krina.invitingyou.top/og-image.jpg" },
+      { property: "og:url", content: "https://shivan-weds-krina.invitingyou.top/" },
+      { property: "og:image", content: "https://shivan-weds-krina.invitingyou.top/og-image.jpg" },
+      { property: "og:image:secure_url", content: "https://shivan-weds-krina.invitingyou.top/og-image.jpg" },
       { property: "og:image:type", content: "image/jpeg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Official groom-side wedding invitation of Dr. Shivam Mehta & Dr. Krina Morabia. Celebrations on 20, 21 & 22 November 2026.",
       },
-      { name: "twitter:image", content: "https://shivam-weds-krina.invitingyou.top/og-image.jpg" },
+      { name: "twitter:image", content: "https://shivan-weds-krina.invitingyou.top/og-image.jpg" },
     ],
     links: [
       {
