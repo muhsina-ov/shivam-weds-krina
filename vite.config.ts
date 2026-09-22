@@ -60,7 +60,13 @@ const localAssetsPlugin = {
 };
 
 export default defineConfig({
-  plugins: [localAssetsPlugin, tanstackStart(), viteReact(), tailwindcss(), nitro()],
+  plugins: [
+    localAssetsPlugin,
+    tanstackStart(),
+    viteReact(),
+    tailwindcss(),
+    nitro({ preset: "cloudflare-module" }),
+  ],
   resolve: {
     tsconfigPaths: true,
   },
