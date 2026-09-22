@@ -2,7 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "shivam-weds-krina",
   "compatibility_date": "2026-09-22",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "main": "./.output/server/index.mjs",
   "assets": {
     "directory": "./.output/public",
@@ -10,5 +12,15 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "shivan-weds-krina.invitingyou.top",
+      "custom_domain": true
+    },
+    {
+      "pattern": "shivam-weds-krina.invitingyou.top",
+      "custom_domain": true
+    }
+  ]
 }
