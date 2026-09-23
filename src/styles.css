@@ -303,6 +303,39 @@
   }
 }
 
+/* Countdown digit roll — incoming value settles smoothly from just above. */
+@keyframes digit-roll-in {
+  from {
+    transform: translateY(-55%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Outgoing ghost value rolls down and fades away beneath the new one. */
+@keyframes digit-roll-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(55%);
+    opacity: 0;
+  }
+}
+
+@utility flip-digit-in {
+  animation: digit-roll-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility flip-digit-out {
+  animation: digit-roll-out 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
 @utility flip-stack {
   perspective: 600px;
 }
@@ -519,4 +552,33 @@
 
 @utility diya-glow {
   animation: diya-pulse 2.4s ease-in-out infinite;
+}
+
+/* Prevent text selection and long-press callout in diya section */
+.diya-stage,
+.diya-stage * {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+@keyframes bloom-radiance {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.4);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.diya-bloom {
+  animation: bloom-radiance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

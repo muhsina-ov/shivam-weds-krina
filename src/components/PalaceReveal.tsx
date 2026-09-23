@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const palaceImage = "/__local/palace-courtyard.jpg";
+const palaceImage = "/palace-amartara.jpg";
 
 export function PalaceReveal() {
   const ref = useRef<HTMLElement>(null);
@@ -26,7 +26,7 @@ export function PalaceReveal() {
     >
       <img
         src={palaceImage}
-        alt="Illuminated celebration courtyard reflected in a still pool"
+        alt="Amartara Resort pool illuminated at night under fireworks"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--deep),transparent_30%,transparent_65%,var(--deep))]" />

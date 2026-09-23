@@ -153,30 +153,27 @@ function Invitation() {
         {/* Main Hero Names & Celebrations */}
         <div className="relative z-10 my-auto px-6 text-center max-w-4xl">
           <Reveal delay={100}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-deep/70 px-4 py-1.5 backdrop-blur-sm mb-3">
-              <Sparkles className="h-3 w-3 text-gold" />
-              <span className="text-[0.62rem] uppercase tracking-[0.4em] text-gold-soft font-medium">
-                Groom Side E-Invite · Mehta Family
+            <div className="inline-flex flex-col items-center gap-1.5 rounded-full border border-gold/40 bg-deep/70 px-7 py-2.5 backdrop-blur-sm mb-3">
+              <span className="flex items-center gap-3 text-[0.66rem] sm:text-xs uppercase tracking-[0.4em] text-gold-soft font-medium">
+                <Sparkles className="h-3 w-3 shrink-0 text-gold" />
+                Mehta Family
+                <Sparkles className="h-3 w-3 shrink-0 text-gold" />
+              </span>
+              <span className="text-[0.6rem] uppercase tracking-[0.5em] text-gold-soft/85">
+                Welcomes You
               </span>
             </div>
           </Reveal>
 
-          <Reveal delay={150}>
-            <p className="text-[0.68rem] uppercase tracking-[0.5em] text-gold-soft/80">
-              Together with their families
+          <Reveal delay={200}>
+            <div className="mx-auto mt-4 w-32 gold-rule" />
+            <p className="mt-3 text-[0.68rem] uppercase tracking-[0.5em] text-gold-soft/85">
+              For the wedding celebrations of
             </p>
           </Reveal>
 
           <Reveal delay={250}>
             <LetterH1 />
-          </Reveal>
-
-          <Reveal delay={350}>
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs text-foreground/80 font-display italic">
-              <span>Dr Shivam Mehta <span className="text-gold-soft font-normal">(Son of Mr Amul Mehta &amp; Mrs Sharvari Mehta)</span></span>
-              <span className="text-gold">✦</span>
-              <span>Dr Krina Morabia <span className="text-gold-soft font-normal">(Daughter of Mr Nitin Morabia &amp; Mrs Jyoti Morabia)</span></span>
-            </div>
           </Reveal>
 
           <Reveal delay={450}>
@@ -201,7 +198,7 @@ function Invitation() {
             <div className="mx-auto mt-8 w-24 gold-rule" />
             <div className="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
               <p className="text-base text-foreground/90 font-display italic">
-                With the Blessings of <span className="text-gold-soft font-semibold">Mr Niranjan Mehta &amp; Mrs Asha Mehta</span>
+                With the Blessings of <span className="text-gold-soft font-semibold">our Elders</span>
                 <br />
                 <span className="text-xs text-gold-soft/75">(Grandfather &amp; Grandmother of the Groom)</span>
               </p>
@@ -234,6 +231,67 @@ function Invitation() {
           </Reveal>
           <Reveal delay={150}>
             <FlipCountdown target={WEDDING_DATE} />
+          </Reveal>
+
+          {/* Attire reminder message below the countdown */}
+          <Reveal delay={300}>
+            <div className="mx-auto mt-14 flex max-w-2xl flex-col items-center text-center">
+              <div className="flex items-center justify-center gap-5 sm:gap-8">
+                {/* Sherwani (groom) line-art */}
+                <svg
+                  aria-hidden
+                  viewBox="0 0 56 88"
+                  className="h-16 w-auto shrink-0 text-gold/75 sm:h-20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 11 L28 18 L39 11 L47 20 L43.5 33 L43.5 75 Q28 79.5 12.5 75 L12.5 33 L9 20 Z" />
+                  <path d="M28 18 L28 77" />
+                  <path d="M17 11 L22.5 21 L28 18 M39 11 L33.5 21 L28 18" />
+                  <circle cx="24" cy="30" r="1" />
+                  <circle cx="24" cy="40" r="1" />
+                  <circle cx="24" cy="50" r="1" />
+                  <circle cx="24" cy="60" r="1" />
+                  <path d="M14 84 h28" opacity="0.5" />
+                </svg>
+
+                <p className="max-w-xs font-display text-lg italic leading-snug text-foreground/90 sm:text-xl">
+                  Are you ready for the{" "}
+                  <span className="gold-text">festivities</span> &amp; your best wedding attires?
+                </p>
+
+                {/* Lehenga (bride) line-art */}
+                <svg
+                  aria-hidden
+                  viewBox="0 0 80 88"
+                  className="h-16 w-auto shrink-0 text-gold/75 sm:h-20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M28 13 h24" />
+                  <path d="M29 13 L14 69 Q40 79 66 69 L51 13" />
+                  <path d="M16.5 63 Q40 72.5 63.5 63" opacity="0.7" />
+                  <path d="M33 17 Q41 32 47 17" opacity="0.8" />
+                  <path d="M35 14 Q53 27 63 15" />
+                  <path d="M26 84 h28" opacity="0.5" />
+                </svg>
+              </div>
+
+              <div className="mt-6 w-40 gold-rule" />
+
+              <p className="mt-4 font-display text-base italic text-gold-soft/85">
+                Beautiful days, brighter memories await!
+              </p>
+              <span className="mt-2 text-xl text-gold/70" aria-hidden>
+                ♡
+              </span>
+            </div>
           </Reveal>
         </div>
       </section>

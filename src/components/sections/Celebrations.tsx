@@ -1,107 +1,166 @@
-import { useRef, useState } from "react";
-import { CalendarPlus, Heart, MapPin, Sparkles } from "lucide-react";
+import { useRef } from "react";
+import {
+  CalendarPlus,
+  Flame,
+  Heart,
+  MapPin,
+  Music,
+  PartyPopper,
+  Sparkles,
+  Users,
+  Wine,
+} from "lucide-react";
 
-import frameAsset from "@/assets/r1.png.asset.json";
-import coupleAsset from "@/assets/r2.png.asset.json";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/sections/SectionHeader";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { gsap, useGSAP, useMotionOk } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export type Event = {
   name: string;
+  isSangeet?: boolean;
   date: string;
   time: string;
   place: string;
   note: string;
   subnote?: string;
+  tags: { label: string; icon?: string }[];
   start: string;
   end: string;
   slug: string;
-  badge?: string;
+  badge: string;
+  image?: string;
+  iconType?: "kalash" | "horse" | "fire" | "party";
+  mameruDetails?: {
+    title: string;
+    subtitle: string;
+    mamaMami: string;
+    masiMasaji: string;
+    time: string;
+    place: string;
+    note: string;
+  };
 };
 
 export const CELEBRATION_EVENTS: Event[] = [
   {
-    name: "Welcome Party",
+    name: "An Evening Together",
     date: "20 November 2026",
-    time: "7:30 PM onwards",
+    time: "7:30 PM Onwards",
     place: "Polaris Banquet Hall",
-    note: "An evening of warm welcomes, happy hearts and the beginning of our celebrations.",
+    note: "An evening of warm welcomes, heartfelt reunions and the beginning of our celebrations.",
+    tags: [
+      { label: "DINNER", icon: "wine" },
+      { label: "MUSIC", icon: "music" },
+      { label: "GOOD COMPANY", icon: "users" },
+    ],
     start: "2026-11-20T19:30:00+05:30",
     end: "2026-11-20T23:30:00+05:30",
-    slug: "welcome-party",
-    badge: "Day 1",
+    slug: "evening-together",
+    badge: "DAY 1",
+    image: "/event-evening.jpg",
   },
   {
-    name: "Haldi Ceremony",
+    name: "Haldi & Hues",
     date: "21 November 2026",
-    time: "10:30 AM onwards",
+    time: "10:30 AM Onwards",
     place: "Nova Party Lawn",
     note: "Sunshine, laughter and a little haldi as we celebrate the bride and groom.",
+    tags: [
+      { label: "COLOURS", icon: "sparkles" },
+      { label: "FUN", icon: "party" },
+      { label: "TOGETHERNESS", icon: "infinity" },
+    ],
     start: "2026-11-21T10:30:00+05:30",
     end: "2026-11-21T13:30:00+05:30",
-    slug: "haldi",
-    badge: "Day 2 · Morning",
+    slug: "haldi-and-hues",
+    badge: "DAY 2 · MORNING",
+    image: "/event-haldi.jpg",
   },
   {
-    name: "Sangeet Night",
+    name: "The Sangeet Social",
+    isSangeet: true,
     date: "21 November 2026",
-    time: "7:30 PM onwards",
+    time: "7:30 PM Onwards",
     place: "Peacock Party Lawn",
     note: "An evening of music, dance, laughter and unforgettable family moments.",
-    subnote: "With love from: Mrs Tanvi Patel & Mr Parthav Patel (Sister & Brother-in-law of the Groom)",
+    tags: [
+      { label: "MUSIC", icon: "music" },
+      { label: "DANCE", icon: "dance" },
+      { label: "GOOD VIBES", icon: "sparkles" },
+      { label: "TOGETHERNESS", icon: "users" },
+    ],
     start: "2026-11-21T19:30:00+05:30",
     end: "2026-11-21T23:59:00+05:30",
-    slug: "sangeet",
-    badge: "Day 2 · Evening",
+    slug: "sangeet-social",
+    badge: "DAY 2 · EVENING",
+    image: "/event-sangeet.jpg",
   },
   {
     name: "Grahshanti",
     date: "22 November 2026",
-    time: "10:30 AM onwards",
+    time: "10:30 AM Onwards",
     place: "Nova Party Lawn",
+    iconType: "kalash",
     note: "A beautiful morning of blessings, traditions and prayers for a lifetime of togetherness.",
+    mameruDetails: {
+      title: "Mameru",
+      subtitle: "WITH LOVE & BLESSINGS",
+      mamaMami: "Mr. Himanshu & Mrs. Vandana Purohit (Mama & Mami)",
+      masiMasaji: "Mr. Kumar & Mrs. Aparna Trivedi (Masi & Masaji)",
+      time: "During Grahshanti",
+      place: "Nova Party Lawn",
+      note: "A special moment to honour our Mama & Mami and Masi & Masaji, filled with love, traditions and cherished family bonds.",
+    },
+    tags: [
+      { label: "BLESSINGS", icon: "lotus" },
+      { label: "TRADITIONS", icon: "diya" },
+      { label: "FAMILY", icon: "users" },
+      { label: "TOGETHERNESS", icon: "infinity" },
+    ],
     start: "2026-11-22T10:30:00+05:30",
-    end: "2026-11-22T13:00:00+05:30",
-    slug: "grahshanti",
-    badge: "Day 3 · Morning",
-  },
-  {
-    name: "Mameru",
-    date: "22 November 2026",
-    time: "Traditional Ceremony",
-    place: "Nova Party Lawn",
-    note: "For our beloved Mama & Mami and Masi & Masaji — a little tradition, a lot of love, and memories to cherish forever. ❤️",
-    subnote: "Mr Himanshu Purohit & Mrs Vandana Purohit (Mama & Mami) · Mr Kumar Trivedi & Mrs Aparna Trivedi (Masi & Masaji)",
-    start: "2026-11-22T13:00:00+05:30",
-    end: "2026-11-22T15:30:00+05:30",
-    slug: "mameru",
-    badge: "Day 3 · Afternoon",
+    end: "2026-11-22T14:00:00+05:30",
+    slug: "grahshanti-mameru",
+    badge: "DAY 3 · MORNING",
+    image: "/event-grahshanti.jpg",
   },
   {
     name: "Baarat",
     date: "22 November 2026",
-    time: "4:00 PM",
+    time: "4:00 PM Onwards",
     place: "Starts at the Entry Gate",
+    iconType: "horse",
     note: "Let the beats begin as Shivam arrives with love, laughter and his baraat.",
+    tags: [
+      { label: "MUSIC", icon: "drum" },
+      { label: "DANCE", icon: "dance" },
+      { label: "CELEBRATION", icon: "users" },
+      { label: "TOGETHERNESS", icon: "infinity" },
+    ],
     start: "2026-11-22T16:00:00+05:30",
     end: "2026-11-22T18:00:00+05:30",
     slug: "baarat",
-    badge: "Day 3 · 4:00 PM",
+    badge: "DAY 3 · 4:00 PM",
+    image: "/event-baarat.jpg",
   },
   {
     name: "Hastmelap & Wedding",
     date: "22 November 2026",
-    time: "6:15 PM",
+    time: "6:15 PM Onwards",
     place: "Peacock Party Lawn",
+    iconType: "fire",
     note: "Two hearts, two families and one beautiful beginning as Shivam and Krina join hands forever.",
-    subnote: "🥰 With Excitement From: Aarush & Raavika (Excited to celebrate the wedding of their Mama! ❤️)",
+    tags: [
+      { label: "SACRED RITUALS", icon: "fire" },
+      { label: "LOVE", icon: "heart" },
+      { label: "FAMILY", icon: "users" },
+      { label: "TOGETHERNESS", icon: "infinity" },
+    ],
     start: "2026-11-22T18:15:00+05:30",
-    end: "2026-11-22T21:30:00+05:30",
+    end: "2026-11-22T22:30:00+05:30",
     slug: "hastmelap-wedding",
-    badge: "Main Ceremony",
+    badge: "DAY 3 · 6:15 PM",
+    image: "/event-hastmelap.jpg",
   },
 ];
 
@@ -125,7 +184,7 @@ function buildIcs(e: Event) {
     `DTEND:${fmtIcsStamp(e.end)}`,
     `SUMMARY:Dr Shivam & Dr Krina — ${e.name}`,
     `LOCATION:${e.place}`,
-    `DESCRIPTION:${e.note}${e.subnote ? " " + e.subnote : ""}`,
+    `DESCRIPTION:${e.note}${e.mameruDetails ? " " + e.mameruDetails.note : ""}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ];
@@ -140,17 +199,15 @@ export function Celebrations() {
   return (
     <section
       data-section="celebrations"
-      className="relative bg-cover bg-center bg-no-repeat px-6 py-32"
-      style={{ backgroundImage: `url(${frameAsset.url})` }}
+      className="relative px-6 py-28 sm:py-32 bg-gradient-to-b from-[#2a0404] via-[#380606] to-[#250303]"
     >
+      {/* Subtle radial ambient warmth */}
       <div
         aria-hidden
-        className="ken-burns-bg absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${frameAsset.url})` }}
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(180,40,40,0.18),transparent_70%)]"
       />
-      <div className="absolute inset-0 bg-deep/80 backdrop-blur-[2px]" />
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative mx-auto max-w-4xl">
         <SectionHeader
           eyebrow="Wedding Celebrations"
           title="Seven Celebrations, One Sacred Journey"
@@ -162,9 +219,9 @@ export function Celebrations() {
           family blessings.
         </p>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 space-y-6 sm:space-y-8">
           {CELEBRATION_EVENTS.map((e, i) => (
-            <Reveal key={e.name} delay={i * 90}>
+            <Reveal key={e.slug} delay={i * 80}>
               <EventCard event={e} isFeatured={e.slug === "hastmelap-wedding"} />
             </Reveal>
           ))}
@@ -177,7 +234,6 @@ export function Celebrations() {
 function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const ok = useMotionOk();
-  const [open, setOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -188,9 +244,9 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         gsap.to(card, {
-          rotateX: -y * 3.5,
-          rotateY: x * 4.5,
-          transformPerspective: 800,
+          rotateX: -y * 2.5,
+          rotateY: x * 3,
+          transformPerspective: 900,
           duration: 0.45,
           ease: "power3.out",
           overwrite: "auto",
@@ -215,98 +271,186 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
   );
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+    <div
+      ref={cardRef}
+      className={cn(
+        "group relative overflow-hidden rounded-2xl sm:rounded-3xl border transition-all duration-500",
+        "bg-gradient-to-br from-[#4d0c0c] via-[#3a0707] to-[#280404]",
+        isFeatured
+          ? "border-gold/60 shadow-[0_20px_50px_-15px_rgba(225,190,120,0.35)]"
+          : "border-gold/30 hover:border-gold/55 shadow-[0_15px_40px_-18px_rgba(0,0,0,0.6)]",
+      )}
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      <div className="relative flex flex-col sm:flex-row items-stretch">
+        {/* Left Side: Content */}
         <div
-          ref={cardRef}
           className={cn(
-            "group relative flex h-full flex-col justify-between cursor-pointer rounded-2xl border p-7 paper transition-all duration-500",
-            isFeatured
-              ? "border-gold/60 shadow-[0_20px_50px_-15px_rgba(225,190,120,0.35)] md:col-span-2 md:max-w-2xl md:mx-auto w-full"
-              : "border-gold/25 hover:border-gold/50 hover:shadow-[0_25px_50px_-20px_rgba(225,190,120,0.35)]",
+            "p-6 sm:p-8 flex flex-col justify-between z-10",
+            event.image ? "sm:w-[58%] w-full" : "w-full",
           )}
-          style={{ transformStyle: "preserve-3d" }}
         >
           <div>
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <img
-                  src={coupleAsset.url}
-                  alt=""
-                  aria-hidden
-                  className="h-6 w-6 rounded-full object-cover ring-1 ring-gold/50"
-                />
-                <h3 className="font-display text-2xl sm:text-3xl gold-text">{event.name}</h3>
-              </div>
-              {event.badge && (
-                <span className="rounded-full border border-gold/30 bg-gold/10 px-2.5 py-0.5 text-[0.6rem] font-medium tracking-wider text-gold-soft uppercase">
-                  {event.badge}
-                </span>
+            {/* Eyebrow & Badge */}
+            <span className="text-[0.68rem] uppercase tracking-[0.28em] text-gold-soft font-semibold">
+              {event.badge}
+            </span>
+
+            {/* Title with optional icon badge */}
+            <div className="mt-1 flex items-center gap-3">
+              {event.iconType && (
+                <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full border border-gold/40 bg-gold/10 p-2 flex items-center justify-center text-gold shadow-[0_0_12px_rgba(225,190,120,0.25)]">
+                  {event.iconType === "kalash" && (
+                    <span className="text-xl" title="Sacred Kalash">
+                      🪔
+                    </span>
+                  )}
+                  {event.iconType === "horse" && (
+                    <span className="text-xl" title="Royal Baarat">
+                      🐎
+                    </span>
+                  )}
+                  {event.iconType === "fire" && <Flame className="h-6 w-6 text-gold" />}
+                </div>
+              )}
+
+              {event.isSangeet ? (
+                <div>
+                  <span className="text-xs uppercase tracking-[0.25em] text-gold-soft/80 block">
+                    The
+                  </span>
+                  <h3 className="font-display text-2xl sm:text-3xl text-gold-soft font-normal tracking-wide">
+                    Sangeet{" "}
+                    <span className="font-display italic text-3xl sm:text-4xl text-gold font-light">
+                      Social
+                    </span>
+                  </h3>
+                </div>
+              ) : (
+                <h3 className="font-display text-2xl sm:text-3xl text-gold-soft font-normal tracking-wide">
+                  {event.name}
+                </h3>
               )}
             </div>
 
-            <div className="mt-3 w-12 gold-rule transition-all duration-500 group-hover:w-28" />
+            {/* Gold rule */}
+            <div className="mt-2.5 w-12 h-px bg-gold/40 group-hover:w-24 transition-all duration-500" />
 
-            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm tracking-[0.18em] text-gold-soft">
-              <span className="font-medium">{event.date}</span>
-              <span className="text-gold/50">·</span>
-              <span className="font-light">{event.time}</span>
+            {/* Date & Time */}
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm uppercase tracking-[0.16em] text-gold-soft/90 font-medium">
+              <span>{event.date}</span>
+              <span className="text-gold/40">·</span>
+              <span className="text-gold-soft/80">{event.time}</span>
             </div>
 
-            <div className="mt-2 flex items-center gap-1.5 text-sm text-foreground/90">
-              <MapPin className="h-3.5 w-3.5 text-gold-soft shrink-0" />
+            {/* Venue Location */}
+            <div className="mt-2 flex items-center gap-1.5 text-xs sm:text-sm text-foreground/90">
+              <MapPin className="h-3.5 w-3.5 text-gold shrink-0" />
               <span>{event.place}</span>
             </div>
 
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{event.note}</p>
+            {/* Description */}
+            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-foreground/75 font-light">
+              {event.note}
+            </p>
 
-            {event.subnote && (
-              <div className="mt-4 rounded-lg border border-gold/20 bg-gold/5 p-3 text-xs leading-relaxed text-gold-soft/90 italic">
-                {event.subnote}
+            {/* Nested Mameru Card (Inside Grahshanti) */}
+            {event.mameruDetails && (
+              <div className="mt-5 rounded-xl border border-gold/35 bg-[#3a0808]/85 p-4 sm:p-5 shadow-lg relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏺</span>
+                      <div>
+                        <h4 className="font-display text-xl sm:text-2xl text-gold-soft">
+                          {event.mameruDetails.title}
+                        </h4>
+                        <span className="text-[0.62rem] uppercase tracking-[0.2em] text-gold-soft/70 block">
+                          {event.mameruDetails.subtitle}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Highlighted Mama Mami & Masi Masaji Names */}
+                  <div className="rounded-lg border border-gold/40 bg-gold/10 px-3 py-2 text-right">
+                    <p className="text-xs font-medium text-gold">
+                      {event.mameruDetails.mamaMami}
+                    </p>
+                    <p className="text-xs font-medium text-gold-soft mt-0.5">
+                      {event.mameruDetails.masiMasaji}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center gap-2 text-[0.68rem] text-gold-soft/80 tracking-wider uppercase">
+                  <span>🕒 {event.mameruDetails.time}</span>
+                  <span>·</span>
+                  <span>📍 {event.mameruDetails.place}</span>
+                </div>
+
+                <p className="mt-2 text-xs leading-relaxed text-foreground/80 font-light">
+                  {event.mameruDetails.note}
+                </p>
               </div>
             )}
           </div>
 
-          <div className="mt-6 flex items-center justify-between pt-3 border-t border-gold/10 text-[0.62rem] uppercase tracking-widest text-gold-soft/75 group-hover:text-gold-soft">
-            <span className="flex items-center gap-1">
-              <CalendarPlus className="h-3 w-3" /> Save to Calendar
-            </span>
-            <span>Tap for details ↗</span>
-          </div>
-        </div>
-      </PopoverTrigger>
+          {/* Bottom Bar: Tags & Direct Save to Calendar */}
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gold/15">
+            <div className="flex flex-wrap items-center gap-2.5 text-[0.62rem] sm:text-xs uppercase tracking-[0.16em] text-gold-soft/80 font-medium">
+              {event.tags.map((tag, idx) => (
+                <span key={idx} className="inline-flex items-center gap-1">
+                  {tag.icon === "wine" && <Wine className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "music" && <Music className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "users" && <Users className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "sparkles" && <Sparkles className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "party" && <PartyPopper className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "fire" && <Flame className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "heart" && <Heart className="h-3 w-3 text-gold-soft/90" />}
+                  {tag.icon === "lotus" && <span>🪷</span>}
+                  {tag.icon === "diya" && <span>🪔</span>}
+                  {tag.icon === "drum" && <span>🥁</span>}
+                  {tag.icon === "dance" && <span>🥂</span>}
+                  {tag.icon === "infinity" && <span>♾️</span>}
+                  <span>{tag.label}</span>
+                  {idx < event.tags.length - 1 && <span className="text-gold/30">|</span>}
+                </span>
+              ))}
+            </div>
 
-      <PopoverContent className="w-80 border-gold/40 bg-card/95 backdrop-blur-md p-5 text-foreground shadow-2xl">
-        <div className="space-y-3">
-          <div className="flex items-center gap-1.5 text-gold-soft">
-            <Sparkles className="h-4 w-4" />
-            <p className="font-display text-lg gold-text">{event.name}</p>
-          </div>
-          <p className="text-xs text-gold-soft/90">
-            {event.date} · {event.time}
-          </p>
-          <p className="text-xs text-foreground/80 flex items-center gap-1">
-            <MapPin className="h-3.5 w-3.5 text-gold" /> {event.place}
-          </p>
-          <p className="text-xs text-muted-foreground leading-relaxed">{event.note}</p>
-          {event.subnote && (
-            <p className="text-[0.75rem] text-gold-soft/90 border-l-2 border-gold/40 pl-2 italic">
-              {event.subnote}
-            </p>
-          )}
-
-          <div className="pt-2">
             <a
               href={icsHref(event)}
               download={`shivam-krina-${event.slug}.ics`}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/60 bg-gold/10 py-2.5 text-[0.68rem] uppercase tracking-[0.25em] text-gold-soft transition-colors hover:bg-gold/20"
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-[0.65rem] sm:text-xs uppercase tracking-wider text-gold-soft transition-all duration-300 hover:bg-gold/25 hover:text-gold hover:border-gold/70"
             >
-              <CalendarPlus className="h-3.5 w-3.5" />
-              Add to Calendar (.ics)
+              <CalendarPlus className="h-3.5 w-3.5 text-gold" />
+              <span>Save to Calendar</span>
             </a>
           </div>
         </div>
-      </PopoverContent>
-    </Popover>
+
+        {/* Right Side: Photo with smooth gradient fade into crimson base */}
+        {event.image && (
+          <div className="relative sm:w-[42%] w-full min-h-[220px] sm:min-h-full overflow-hidden order-first sm:order-last">
+            <img
+              src={event.image}
+              alt={event.name}
+              className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Desktop Left-to-Right gradient fade */}
+            <div
+              aria-hidden
+              className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[#4d0c0c] via-transparent to-transparent pointer-events-none"
+            />
+            {/* Mobile Top-to-Bottom gradient fade */}
+            <div
+              aria-hidden
+              className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#4d0c0c] via-transparent to-transparent pointer-events-none"
+            />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

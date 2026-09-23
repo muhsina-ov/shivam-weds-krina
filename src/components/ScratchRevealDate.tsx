@@ -90,11 +90,21 @@ export function ScratchRevealDate() {
             className={`absolute left-5 top-5 h-3.5 w-3.5 text-gold transition-all duration-700 ${revealed ? "rotate-12 scale-125 opacity-100" : "opacity-0"}`}
           />
           <div>
-            <p className="font-display text-3xl tracking-[0.12em] text-gold-soft sm:text-5xl">
-              20 · 21 · 22 Nov 2026
+            <p className="font-display text-3xl leading-tight tracking-[0.12em] text-gold-soft sm:text-5xl">
+              20 · 21 · 22 Nov
             </p>
-            <p className="mt-2 text-[0.62rem] uppercase tracking-[0.4em] text-gold/85">
-              Wedding Celebrations · Groom Side
+            <p className="font-display text-3xl leading-tight tracking-[0.12em] text-gold-soft sm:text-5xl">
+              2026
+            </p>
+            <div className="mx-auto mt-3 flex w-36 items-center gap-2">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/60" />
+              <span className="text-[0.7rem] text-gold" aria-hidden>
+                ✿
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/60" />
+            </div>
+            <p className="mt-3 text-[0.62rem] uppercase tracking-[0.4em] text-gold/85">
+              Amartara The Resort, Abu Road
             </p>
           </div>
         </div>

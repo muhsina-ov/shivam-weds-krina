@@ -10,7 +10,9 @@ export function LetterH1() {
       style={{ opacity: 1 }}
     >
       <Letters text="Dr Shivam" />
-      <span className="font-light italic text-gold-soft/60 sm:text-5xl md:text-6xl">&amp;</span>
+      <span className="font-light italic text-gold-soft/70 text-3xl sm:text-4xl md:text-5xl">
+        weds
+      </span>
       <Letters text="Dr Krina" />
     </h1>
   );

@@ -29,10 +29,13 @@ export function FamilyTies() {
               <h3 className="mt-2 font-display text-3xl sm:text-4xl gold-text">
                 Dr Shivam Mehta
               </h3>
+              <p className="mt-1 font-display text-base text-foreground/85">
+                (MD Radiodiagnosis)
+              </p>
               <div className="mx-auto my-4 w-12 gold-rule" />
               <p className="text-xs uppercase tracking-[0.25em] text-gold/70">Son of</p>
               <p className="mt-1 font-display text-xl text-foreground">
-                Mr Amul Mehta <span className="text-gold-soft">&amp;</span> Mrs Sharvari Mehta
+                Mrs Sharvari Mehta <span className="text-gold-soft">&amp;</span> Mr Amul Mehta
               </p>
               <div className="mt-4 rounded-xl border border-gold/15 bg-gold/5 py-2 px-3 text-xs text-gold-soft/90">
                 Groom's Family
@@ -49,10 +52,13 @@ export function FamilyTies() {
               <h3 className="mt-2 font-display text-3xl sm:text-4xl gold-text">
                 Dr Krina Morabia
               </h3>
+              <p className="mt-1 font-display text-base text-foreground/85">
+                (MD Radiodiagnosis)
+              </p>
               <div className="mx-auto my-4 w-12 gold-rule" />
               <p className="text-xs uppercase tracking-[0.25em] text-gold/70">Daughter of</p>
               <p className="mt-1 font-display text-xl text-foreground">
-                Mr Nitin Morabia <span className="text-gold-soft">&amp;</span> Mrs Jyoti Morabia
+                Mrs Jyoti Morabia <span className="text-gold-soft">&amp;</span> Mr Nitin Morabia
               </p>
               <div className="mt-4 rounded-xl border border-gold/15 bg-gold/5 py-2 px-3 text-xs text-gold-soft/90">
                 Bride's Family
@@ -63,27 +69,27 @@ export function FamilyTies() {
 
         {/* Blessings & Love from Family */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Grandparents' Blessings */}
+          {/* Grandparents' Blessings — ivory shade */}
           <Reveal delay={250}>
-            <div className="h-full rounded-2xl border border-gold/25 bg-card/40 p-6 text-center backdrop-blur-sm paper">
-              <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-soft">
+            <div className="h-full rounded-2xl border border-gold/50 bg-[oklch(0.94_0.05_85_/_0.97)] p-6 text-center shadow-xl backdrop-blur-sm paper">
+              <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-[oklch(0.42_0.15_30_/_0.45)] bg-[oklch(0.42_0.15_30_/_0.1)] text-[oklch(0.42_0.15_30)]">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <p className="text-[0.62rem] uppercase tracking-[0.3em] text-gold-soft/75">
+              <p className="text-[0.62rem] uppercase tracking-[0.3em] text-[oklch(0.45_0.14_33_/_0.85)]">
                 With the Blessings of
               </p>
-              <h4 className="mt-2 font-display text-2xl text-gold-soft">
-                Mr Niranjan Mehta <span className="text-gold/50">&amp;</span> Mrs Asha Mehta
+              <h4 className="mt-2 font-display text-2xl text-[oklch(0.42_0.15_30)]">
+                Mr Niranjan Mehta <span className="text-[oklch(0.55_0.14_45_/_0.7)]">&amp;</span> Mrs Asha Mehta
               </h4>
-              <p className="mt-2 text-xs italic text-muted-foreground">
+              <p className="mt-2 text-xs italic text-[oklch(0.45_0.1_30_/_0.8)]">
                 Grandfather &amp; Grandmother of the Groom
               </p>
             </div>
           </Reveal>
 
-          {/* Sister & Brother-in-law */}
+          {/* Sister & Brother-in-law — deep rose shade */}
           <Reveal delay={350}>
-            <div className="h-full rounded-2xl border border-gold/25 bg-card/40 p-6 text-center backdrop-blur-sm paper">
+            <div className="h-full rounded-2xl border border-gold/35 bg-[oklch(0.37_0.14_28_/_0.95)] p-6 text-center backdrop-blur-sm paper">
               <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-soft">
                 <Heart className="h-4 w-4" />
               </div>
@@ -99,19 +105,19 @@ export function FamilyTies() {
             </div>
           </Reveal>
 
-          {/* Little Ones */}
+          {/* Little Ones — deep green shade */}
           <Reveal delay={450}>
-            <div className="h-full rounded-2xl border border-gold/25 bg-card/40 p-6 text-center backdrop-blur-sm paper sm:col-span-2 lg:col-span-1">
+            <div className="h-full rounded-2xl border border-[oklch(0.7_0.1_150_/_0.45)] bg-[oklch(0.3_0.07_160_/_0.95)] p-6 text-center backdrop-blur-sm paper sm:col-span-2 lg:col-span-1">
               <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-soft">
                 <Star className="h-4 w-4" />
               </div>
-              <p className="text-[0.62rem] uppercase tracking-[0.3em] text-gold-soft/75">
+              <p className="text-[0.62rem] uppercase tracking-[0.3em] text-[oklch(0.9_0.06_120_/_0.85)]">
                 Excited to Celebrate
               </p>
               <h4 className="mt-2 font-display text-2xl text-gold-soft">
                 Aarush Patel <span className="text-gold/50">&amp;</span> Raavika Patel
               </h4>
-              <p className="mt-2 text-xs italic text-muted-foreground">
+              <p className="mt-2 text-xs italic text-[oklch(0.88_0.05_130_/_0.8)]">
                 Nephew &amp; Niece — Excited to celebrate the wedding of their Mama! ❤️
               </p>
             </div>

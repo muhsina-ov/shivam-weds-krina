@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { gsap } from "gsap";
 
-import { EASE_OUT_EXPO, useGSAP, useMotionOk } from "@/lib/motion";
+import { useGSAP, useMotionOk } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const UNITS = ["Days", "Hours", "Minutes", "Seconds"] as const;
@@ -22,14 +22,17 @@ function pad(n: number) {
 }
 
 /**
- * Each unit is a small 3D "flip clock" — two faces stacked inside a
- * perspective container. When the value changes, the previous face slides
- * down and out while the new face slides down and in. Static fallback when
- * reduced motion is requested.
+ * Each unit always renders its current value in a static base layer, so the
+ * digits can never be blank — even if an animation never runs (reduced
+ * motion, background tab throttling, mid-flight unmount).
  *
- * Renders nothing on SSR and on the first client render so the time-based
- * value cannot disagree with hydration. The first paint after mount shows
- * the current values.
+ * On every change the new value rolls in from just above (CSS `flip-in`) while
+ * a ghost of the previous value rolls out below it (CSS `flip-out`). Pure CSS
+ * keyframes keep the once-per-second seconds tick buttery smooth without JS
+ * driving the transform each frame.
+ *
+ * Renders nothing meaningful on SSR — the first paint after mount shows the
+ * real current values so time-based output cannot disagree with hydration.
  */
 export function FlipCountdown({ target }: { target: string }) {
   const t = new Date(target).getTime();
@@ -38,7 +41,9 @@ export function FlipCountdown({ target }: { target: string }) {
   const ok = useMotionOk();
 
   useEffect(() => {
-    setValues(diff(t));
+    const first = diff(t);
+    prev.current = first;
+    setValues(first);
     const id = window.setInterval(() => {
       setValues((cur) => {
         if (cur) prev.current = cur;
@@ -48,7 +53,6 @@ export function FlipCountdown({ target }: { target: string }) {
     return () => window.clearInterval(id);
   }, [t]);
 
-  // Reserve vertical space so layout doesn't jump when the digits appear.
   return (
     <div className="mx-auto grid max-w-md grid-cols-4 gap-3" suppressHydrationWarning>
       {UNITS.map((u, i) =>
@@ -85,14 +89,12 @@ function FlipUnit({
   highlight: boolean;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
-  const currentRef = useRef<HTMLDivElement>(null);
-  const previousRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const changed = animate && value !== prev;
 
   // Highlight pulse: only runs once on mount if already inside the threshold.
   useGSAP(
     () => {
-      if (!animate || !highlight || !boxRef.current) return;
+      if (!highlight || !boxRef.current) return;
       gsap.fromTo(
         boxRef.current,
         { boxShadow: "0 0 0 0 rgba(0,0,0,0)" },
@@ -105,34 +107,7 @@ function FlipUnit({
         },
       );
     },
-    [animate, highlight],
-  );
-
-  // Animate when value changes.
-  useGSAP(
-    () => {
-      if (!animate || !currentRef.current || !previousRef.current) return;
-      if (!mounted) {
-        setMounted(true);
-        return;
-      }
-      if (value === prev) return;
-      const tl = gsap.timeline();
-      tl.fromTo(
-        currentRef.current,
-        { yPercent: -100 },
-        { yPercent: 0, duration: 0.55, ease: EASE_OUT_EXPO },
-        0,
-      );
-      tl.fromTo(
-        previousRef.current,
-        { yPercent: 0 },
-        { yPercent: 100, duration: 0.55, ease: EASE_OUT_EXPO },
-        0,
-      );
-      return () => tl.kill();
-    },
-    [animate, value],
+    [highlight],
   );
 
   return (
@@ -143,27 +118,26 @@ function FlipUnit({
       )}
     >
       <div className="relative h-9 overflow-hidden">
-        {/* Previous digit (slides out downward) */}
-        <div
-          ref={previousRef}
-          aria-hidden
-          className="flip-face font-display absolute inset-0 grid text-3xl gold-text tabular-nums"
-          style={{
-            transform: animate ? "translateY(0)" : "translateY(-100%)",
-          }}
+        {/* Outgoing ghost of the previous value — rolls down and fades out */}
+        {changed && (
+          <span
+            key={`prev-${value}`}
+            aria-hidden
+            className="flip-digit-out font-display absolute inset-0 grid place-items-center text-3xl gold-text tabular-nums"
+          >
+            {pad(prev)}
+          </span>
+        )}
+        {/* Current value — always present, rolls in from above on change */}
+        <span
+          key={`value-${value}`}
+          className={cn(
+            "flip-digit font-display absolute inset-0 grid place-items-center text-3xl gold-text tabular-nums",
+            changed && "flip-digit-in",
+          )}
         >
-          <span>{pad(prev)}</span>
-        </div>
-        {/* Current digit (slides in from the top) */}
-        <div
-          ref={currentRef}
-          className="flip-face font-display absolute inset-0 grid text-3xl gold-text tabular-nums"
-          style={{
-            transform: animate ? "translateY(-100%)" : "translateY(0)",
-          }}
-        >
-          <span>{pad(value)}</span>
-        </div>
+          {pad(value)}
+        </span>
       </div>
       <div className="mt-1 text-[0.6rem] uppercase tracking-[0.25em] text-muted-foreground">
         {label}

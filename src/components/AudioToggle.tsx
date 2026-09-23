@@ -10,28 +10,43 @@ import { cn } from "@/lib/utils";
  */
 export function AudioToggle({ visible }: { visible: boolean }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const wantsPlay = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [broken, setBroken] = useState(false);
   const [showNote, setShowNote] = useState(false);
 
   useEffect(() => {
-    // Try webm then mp3
+    // Prefer the real WebM/Opus file; fall back to MP3 for browsers
+    // without WebM support (e.g. older Safari).
     const a = new Audio();
     a.loop = true;
     a.preload = "auto";
+    a.volume = 0.85;
 
-    // Set source
-    const canPlayWebm = a.canPlayType("audio/webm; codecs=opus");
-    a.src = canPlayWebm ? "/__local/audio.webm" : "/__local/audio.mp3";
+    // NOTE: the codecs parameter must be quoted per spec —
+    // canPlayType('audio/webm; codecs=opus') without quotes returns ""
+    // even in browsers that can play it, which previously forced every
+    // browser onto the mp3 fallback.
+    const webmOk =
+      a.canPlayType('audio/webm; codecs="opus"') || a.canPlayType("audio/webm");
+    a.src = webmOk ? "/__local/audio.webm" : "/__local/audio.mp3";
 
-    a.addEventListener("error", () => {
-      // Try fallback to mp3 if webm fails
+    const onError = () => {
+      // Try fallback to mp3 if webm fails — and actually retry playback,
+      // the previous version only swapped src without load()/play().
       if (a.src.endsWith(".webm")) {
         a.src = "/__local/audio.mp3";
+        a.load();
+        // Only auto-retry if we were already trying to play (autoplay or
+        // an explicit toggle); otherwise the next toggle click plays it.
+        if (wantsPlay.current) {
+          void a.play().catch(() => setPlaying(false));
+        }
         return;
       }
       setBroken(true);
-    });
+    };
+    a.addEventListener("error", onError);
 
     audioRef.current = a;
 
@@ -41,23 +56,40 @@ export function AudioToggle({ visible }: { visible: boolean }) {
     };
   }, []);
 
-  // When the invite is opened by the user, attempt smooth auto-play
+  // When the invite is opened by the user, attempt smooth auto-play.
+  // Browsers block audible autoplay once transient activation expires
+  // (the opener films run for several seconds after the tap), so also
+  // retry on the next explicit user gesture.
   useEffect(() => {
     if (!visible) return;
     const a = audioRef.current;
     if (!a) return;
 
-    const playPromise = a.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
+    wantsPlay.current = true;
+    const tryPlay = () => {
+      const p = a.play();
+      if (p !== undefined) {
+        p.then(() => {
           setPlaying(true);
-        })
-        .catch(() => {
+        }).catch(() => {
           // Autoplay was prevented by browser policy until explicit click; user will click the toggle
           setPlaying(false);
         });
-    }
+      }
+    };
+    tryPlay();
+
+    const onGesture = () => {
+      const el = audioRef.current;
+      if (!el || !el.paused) return;
+      tryPlay();
+    };
+    window.addEventListener("pointerdown", onGesture);
+    window.addEventListener("keydown", onGesture);
+    return () => {
+      window.removeEventListener("pointerdown", onGesture);
+      window.removeEventListener("keydown", onGesture);
+    };
   }, [visible]);
 
   const toggle = () => {
@@ -65,9 +97,12 @@ export function AudioToggle({ visible }: { visible: boolean }) {
     if (!a) return;
 
     if (playing) {
+      wantsPlay.current = false;
       a.pause();
       setPlaying(false);
     } else {
+      wantsPlay.current = true;
+      a.load();
       a.play()
         .then(() => {
           setPlaying(true);
