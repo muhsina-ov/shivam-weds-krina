@@ -37,9 +37,6 @@ export function FamilyTies() {
               <p className="mt-1 font-display text-xl text-foreground">
                 Mrs Sharvari Mehta <span className="text-gold-soft">&amp;</span> Mr Amul Mehta
               </p>
-              <div className="mt-4 rounded-xl border border-gold/15 bg-gold/5 py-2 px-3 text-xs text-gold-soft/90">
-                Groom's Family
-              </div>
             </div>
           </Reveal>
 
@@ -60,9 +57,6 @@ export function FamilyTies() {
               <p className="mt-1 font-display text-xl text-foreground">
                 Mrs Jyoti Morabia <span className="text-gold-soft">&amp;</span> Mr Nitin Morabia
               </p>
-              <div className="mt-4 rounded-xl border border-gold/15 bg-gold/5 py-2 px-3 text-xs text-gold-soft/90">
-                Bride's Family
-              </div>
             </div>
           </Reveal>
         </div>
@@ -123,35 +117,6 @@ export function FamilyTies() {
             </div>
           </Reveal>
         </div>
-
-        {/* Mameru Family Tribute */}
-        <Reveal delay={500}>
-          <div className="mt-8 rounded-2xl border border-gold/30 bg-gradient-to-r from-gold/5 via-card/50 to-gold/5 p-6 sm:p-8 text-center backdrop-blur-sm">
-            <span className="text-[0.62rem] uppercase tracking-[0.35em] text-gold-soft">
-              Traditional Mameru Blessings
-            </span>
-            <p className="mt-2 font-display text-lg sm:text-xl italic text-foreground/90">
-              “For our beloved Mama &amp; Mami and Masi &amp; Masaji — a little tradition, a lot of
-              love, and memories to cherish forever.” ❤️
-            </p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-gold-soft">✦</span>
-                <span className="font-display text-lg text-foreground">
-                  Mr Himanshu Purohit &amp; Mrs Vandana Purohit
-                </span>
-                <span className="text-xs text-gold-soft/80 italic">(Mama &amp; Mami)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-gold-soft">✦</span>
-                <span className="font-display text-lg text-foreground">
-                  Mr Kumar Trivedi &amp; Mrs Aparna Trivedi
-                </span>
-                <span className="text-xs text-gold-soft/80 italic">(Masi &amp; Masaji)</span>
-              </div>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

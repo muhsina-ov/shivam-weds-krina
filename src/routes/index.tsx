@@ -196,13 +196,19 @@ function Invitation() {
           <QuoteScrub text="“Where two hearts align in love and purpose, families unite and every step becomes blessed.”" />
           <Reveal delay={200}>
             <div className="mx-auto mt-8 w-24 gold-rule" />
-            <div className="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
-              <p className="text-base text-foreground/90 font-display italic">
-                With the Blessings of <span className="text-gold-soft font-semibold">our Elders</span>
-                <br />
-                <span className="text-xs text-gold-soft/75">(Grandfather &amp; Grandmother of the Groom)</span>
-              </p>
-              <p className="pt-2">
+            <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
+              <div className="space-y-1.5 pt-1 pb-1">
+                <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-soft/85 font-medium">
+                  With the Blessings of
+                </p>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-gold-soft font-semibold tracking-wide drop-shadow-[0_2px_15px_rgba(225,190,120,0.35)]">
+                  Mr Niranjan Mehta <span className="font-light italic text-gold/70">&amp;</span> Mrs Asha Mehta
+                </h3>
+                <p className="text-xs sm:text-sm italic text-foreground/75">
+                  (Grandfather &amp; Grandmother of the Groom)
+                </p>
+              </div>
+              <p className="pt-2 text-foreground/80">
                 We warmly invite you to join Dr Shivam Mehta, Dr Krina Morabia, and our family
                 as we celebrate three days of sacred traditions, joyous music, and unconditional love.
               </p>
@@ -347,12 +353,13 @@ function Invitation() {
           With Love, Respect, and Joy
         </p>
 
-        <p className="relative mt-6 text-balance font-display text-5xl leading-none gold-text sm:text-7xl">
-          Dr Shivam <span className="font-light italic text-gold-soft/55">&amp;</span> Dr Krina
+        <p className="relative mt-6 text-balance font-display text-3xl leading-tight gold-text sm:text-5xl md:text-6xl">
+          Mr Amul Mehta <span className="font-light italic text-gold-soft/55">&amp;</span> Mrs Sharvari Mehta
         </p>
 
-        <p className="relative mx-auto mt-5 max-w-xl font-display text-base sm:text-lg italic leading-relaxed text-foreground/80">
-          “Two hearts, two families and one beautiful beginning as Shivam and Krina join hands forever.”
+        <p className="relative mx-auto mt-5 max-w-xl font-display text-base sm:text-lg italic leading-relaxed text-foreground/85">
+          “We eagerly await your gracious presence and heartfelt blessings,<br className="hidden sm:inline" />
+          as we celebrate the wedding of our beloved children, Shivam &amp; Krina.”
         </p>
 
         {/* Music Note Badge */}
@@ -381,7 +388,7 @@ function Invitation() {
 
         <div className="relative mx-auto mt-8 flex max-w-2xl flex-col items-center justify-between gap-4 border-t border-gold/10 pt-6 text-[0.65rem] uppercase tracking-[0.25em] text-foreground/60 sm:flex-row">
           <span>20–22 November 2026</span>
-          <span>From Dr Shivam Mehta &amp; Family</span>
+          <span>From Mr Amul Mehta, Mrs Sharvari Mehta &amp; Family</span>
           <span>#ShivamWedsKrina</span>
         </div>
 
