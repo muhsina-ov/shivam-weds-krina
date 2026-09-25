@@ -202,10 +202,10 @@ function Invitation() {
                   With the Blessings of
                 </p>
                 <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-gold-soft font-semibold tracking-wide drop-shadow-[0_2px_15px_rgba(225,190,120,0.35)]">
-                  Mr Niranjan Mehta <span className="font-light italic text-gold/70">&amp;</span> Mrs Asha Mehta
+                  Mrs Asha Mehta <span className="font-light italic text-gold/70">&amp;</span> Mr Niranjan Mehta
                 </h3>
                 <p className="text-xs sm:text-sm italic text-foreground/75">
-                  (Grandfather &amp; Grandmother of the Groom)
+                  (Grandmother &amp; Grandfather of the Groom)
                 </p>
               </div>
 
@@ -219,7 +219,7 @@ function Invitation() {
               {/* Parents Invitation */}
               <div className="space-y-2.5">
                 <h3 className="font-display text-2xl sm:text-3xl md:text-4xl gold-text font-semibold tracking-wide drop-shadow-[0_2px_15px_rgba(225,190,120,0.35)]">
-                  Mr Amul Mehta <span className="font-light italic text-gold/70">&amp;</span> Mrs Sharvari Mehta
+                  Mrs Sharvari Mehta <span className="font-light italic text-gold/70">&amp;</span> Mr Amul Mehta
                 </h3>
                 <p className="text-sm sm:text-base leading-relaxed text-foreground/85 max-w-xl mx-auto">
                   warmly invite you to join{" "}
@@ -370,7 +370,7 @@ function Invitation() {
         </p>
 
         <p className="relative mt-6 text-balance font-display text-3xl leading-tight gold-text sm:text-5xl md:text-6xl">
-          Mr Amul Mehta <span className="font-light italic text-gold-soft/55">&amp;</span> Mrs Sharvari Mehta
+          Mrs Sharvari Mehta <span className="font-light italic text-gold-soft/55">&amp;</span> Mr Amul Mehta
         </p>
 
         <p className="relative mx-auto mt-5 max-w-xl font-display text-base sm:text-lg italic leading-relaxed text-foreground/85">
@@ -404,7 +404,7 @@ function Invitation() {
 
         <div className="relative mx-auto mt-8 flex max-w-2xl flex-col items-center justify-between gap-4 border-t border-gold/10 pt-6 text-[0.65rem] uppercase tracking-[0.25em] text-foreground/60 sm:flex-row">
           <span>20–22 November 2026</span>
-          <span>From Mr Amul Mehta, Mrs Sharvari Mehta &amp; Family</span>
+          <span>From Mrs Sharvari Mehta, Mr Amul Mehta &amp; Family</span>
           <span>#ShivamWedsKrina</span>
         </div>
 

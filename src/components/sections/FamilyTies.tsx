@@ -73,7 +73,7 @@ export function FamilyTies() {
                 With Love From
               </p>
               <h4 className="mt-2 font-display text-2xl text-gold-soft">
-                Mrs Tanvi Patel <span className="text-gold/50">&amp;</span> Mr Parthav Patel
+                Dr Tanvi Patel <span className="text-gold/50">&amp;</span> Dr Parthav Patel
               </h4>
               <p className="mt-2 text-xs italic text-muted-foreground">
                 Sister &amp; Brother-in-law of the Groom

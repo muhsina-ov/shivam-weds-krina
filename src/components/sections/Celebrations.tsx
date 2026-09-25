@@ -106,11 +106,11 @@ export const CELEBRATION_EVENTS: Event[] = [
     mameruDetails: {
       title: "Mameru",
       subtitle: "WITH LOVE & BLESSINGS",
-      mamaMami: "Mr. Himanshu & Mrs. Vandana Purohit (Mama & Mami)",
-      masiMasaji: "Mr. Kumar & Mrs. Aparna Trivedi (Masi & Masaji)",
+      mamaMami: "Mrs. Vandana & Mr. Himanshu Purohit",
+      masiMasaji: "Mrs. Aparna & Mr. Kumar Trivedi",
       time: "During Grahshanti",
       place: "Nova Party Lawn",
-      note: "A special moment to honour our Mama & Mami and Masi & Masaji, filled with love, traditions and cherished family bonds.",
+      note: "A special moment to honour our beloved Mama & Mami and Masi & Masaji, filled with love, traditions and cherished family bonds.",
     },
     tags: [
       { label: "BLESSINGS", icon: "lotus" },
@@ -356,42 +356,60 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
 
             {/* Nested Mameru Card (Inside Grahshanti) */}
             {event.mameruDetails && (
-              <div className="mt-5 rounded-xl border border-gold/35 bg-[#3a0808]/85 p-4 sm:p-5 shadow-lg relative overflow-hidden">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl">🏺</span>
-                      <div>
-                        <h4 className="font-display text-xl sm:text-2xl text-gold-soft">
-                          {event.mameruDetails.title}
-                        </h4>
-                        <span className="text-[0.62rem] uppercase tracking-[0.2em] text-gold-soft/70 block">
-                          {event.mameruDetails.subtitle}
-                        </span>
-                      </div>
+              <div className="mt-5 rounded-2xl border border-gold/40 bg-gradient-to-b from-[#3a0808]/95 to-[#2c0505]/95 p-4 sm:p-5 shadow-xl relative overflow-hidden backdrop-blur-md">
+                <div className="flex items-center justify-between gap-3 border-b border-gold/20 pb-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-2xl" role="img" aria-label="Mameru Kalash">
+                      🏺
+                    </span>
+                    <div>
+                      <h4 className="font-display text-xl sm:text-2xl text-gold-soft font-semibold tracking-wide">
+                        {event.mameruDetails.title}
+                      </h4>
+                      <span className="text-[0.68rem] uppercase tracking-[0.25em] text-gold/85 font-medium block">
+                        {event.mameruDetails.subtitle}
+                      </span>
                     </div>
                   </div>
+                  <div className="text-right shrink-0">
+                    <span className="inline-block rounded-full border border-gold/30 bg-gold/10 px-2.5 py-1 text-[0.62rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
+                      🕒 {event.mameruDetails.time}
+                    </span>
+                  </div>
+                </div>
 
-                  {/* Highlighted Mama Mami & Masi Masaji Names */}
-                  <div className="rounded-lg border border-gold/40 bg-gold/10 px-3 py-2 text-right">
-                    <p className="text-xs font-medium text-gold">
+                {/* Clear, Prominent Mama-Mami and Masi-Masaji Cards */}
+                <div className="mt-3.5 grid gap-3 sm:grid-cols-2">
+                  {/* Mama & Mami */}
+                  <div className="rounded-xl border border-gold/35 bg-gold/[0.08] p-3 text-left transition-all hover:border-gold/60">
+                    <p className="text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.2em] text-gold font-semibold">
+                      Mama &amp; Mami
+                    </p>
+                    <p className="mt-1 font-display text-sm sm:text-base text-foreground font-medium leading-snug">
                       {event.mameruDetails.mamaMami}
                     </p>
-                    <p className="text-xs font-medium text-gold-soft mt-0.5">
+                  </div>
+
+                  {/* Masi & Masaji */}
+                  <div className="rounded-xl border border-gold/35 bg-gold/[0.08] p-3 text-left transition-all hover:border-gold/60">
+                    <p className="text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.2em] text-gold font-semibold">
+                      Masi &amp; Masaji
+                    </p>
+                    <p className="mt-1 font-display text-sm sm:text-base text-foreground font-medium leading-snug">
                       {event.mameruDetails.masiMasaji}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-2 text-[0.68rem] text-gold-soft/80 tracking-wider uppercase">
-                  <span>🕒 {event.mameruDetails.time}</span>
-                  <span>·</span>
-                  <span>📍 {event.mameruDetails.place}</span>
+                {/* Warm Heartfelt Note & Venue */}
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-gold/15 text-xs text-foreground/85">
+                  <p className="italic text-[0.72rem] sm:text-xs text-foreground/80 leading-relaxed max-w-sm">
+                    {event.mameruDetails.note}
+                  </p>
+                  <span className="shrink-0 text-[0.65rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
+                    📍 {event.mameruDetails.place}
+                  </span>
                 </div>
-
-                <p className="mt-2 text-xs leading-relaxed text-foreground/80 font-light">
-                  {event.mameruDetails.note}
-                </p>
               </div>
             )}
           </div>

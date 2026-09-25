@@ -132,17 +132,40 @@ export function ScratchRevealDate() {
       ctx.fillRect(x, 0, 1, rect.height);
     }
 
+    const isMobile = rect.width < 460;
+
+    // Semi-translucent gold-framed plaque for high readability
+    const plaqueW = Math.min(rect.width - 28, 420);
+    const plaqueH = isMobile ? 62 : 68;
+    const plaqueX = (rect.width - plaqueW) / 2;
+    const plaqueY = (rect.height - plaqueH) / 2;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(255, 246, 224, 0.45)";
+    ctx.beginPath();
+    ctx.roundRect(plaqueX, plaqueY, plaqueW, plaqueH, 14);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(100, 40, 10, 0.4)";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
     // Elegant text banner
     ctx.globalAlpha = 1;
-    ctx.fillStyle = "#55230d";
-    ctx.font = "600 12px Marcellus, serif";
+    ctx.fillStyle = "#3b1305";
+    ctx.font = isMobile
+      ? "bold 15px -apple-system, BlinkMacSystemFont, 'Cinzel', 'Marcellus', Georgia, serif"
+      : "bold 18px -apple-system, BlinkMacSystemFont, 'Cinzel', 'Marcellus', Georgia, serif";
     ctx.textAlign = "center";
-    ctx.letterSpacing = "0.2em";
-    ctx.fillText("✨ SCRATCH TO REVEAL DATE ✨", rect.width / 2, rect.height / 2 - 2);
+    ctx.letterSpacing = isMobile ? "0.12em" : "0.18em";
+    ctx.fillText("✨ SCRATCH TO REVEAL DATE ✨", rect.width / 2, rect.height / 2 - (isMobile ? 5 : 7));
 
-    ctx.fillStyle = "#743515";
-    ctx.font = "400 9px system-ui, sans-serif";
-    ctx.fillText("TOUCH & DRAG TO UNVEIL & PLAY MUSIC", rect.width / 2, rect.height / 2 + 16);
+    ctx.fillStyle = "#5c2007";
+    ctx.font = isMobile
+      ? "bold 11px system-ui, -apple-system, sans-serif"
+      : "bold 12px system-ui, -apple-system, sans-serif";
+    ctx.letterSpacing = isMobile ? "0.08em" : "0.14em";
+    ctx.fillText("TOUCH & DRAG TO UNVEIL & PLAY MUSIC", rect.width / 2, rect.height / 2 + (isMobile ? 16 : 18));
   }, [revealed]);
 
   useEffect(() => {
@@ -242,32 +265,32 @@ export function ScratchRevealDate() {
 
             {/* Auspicious Revealed Festive Ribbon */}
             <div
-              className={`flex items-center gap-2 mb-2 transition-all duration-700 ${
+              className={`flex items-center gap-2 mb-2 sm:mb-3 transition-all duration-700 ${
                 revealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
               }`}
             >
-              <PartyPopper className="h-4 w-4 text-gold animate-bounce" />
-              <span className="text-[0.62rem] sm:text-[0.7rem] uppercase tracking-[0.35em] text-gold font-medium">
+              <PartyPopper className="h-4 w-4 sm:h-5 sm:w-5 text-gold animate-bounce" />
+              <span className="text-xs sm:text-sm uppercase tracking-[0.22em] text-gold font-semibold">
                 ✦ Auspicious Dates Revealed ✦
               </span>
-              <PartyPopper className="h-4 w-4 text-gold -scale-x-100 animate-bounce" />
+              <PartyPopper className="h-4 w-4 sm:h-5 sm:w-5 text-gold -scale-x-100 animate-bounce" />
             </div>
 
-            <div>
-              <p className="font-display text-3xl leading-tight tracking-[0.12em] text-gold-soft sm:text-5xl drop-shadow-[0_2px_15px_rgba(225,190,120,0.3)]">
+            <div className="space-y-1">
+              <p className="font-display text-4xl sm:text-6xl font-bold leading-tight tracking-wider text-gold-soft drop-shadow-[0_2px_18px_rgba(225,190,120,0.45)]">
                 20 · 21 · 22 Nov
               </p>
-              <p className="font-display text-3xl leading-tight tracking-[0.12em] text-gold-soft sm:text-5xl">
+              <p className="font-display text-3xl sm:text-5xl font-semibold leading-tight tracking-[0.14em] text-gold-soft">
                 2026
               </p>
-              <div className="mx-auto mt-3 flex w-36 items-center gap-2">
-                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/60" />
-                <span className="text-[0.7rem] text-gold animate-pulse" aria-hidden>
+              <div className="mx-auto my-3 flex w-44 items-center gap-2.5">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent via-gold/80 to-transparent" />
+                <span className="text-sm text-gold animate-pulse" aria-hidden>
                   ✿
                 </span>
-                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/60" />
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent via-gold/80 to-transparent" />
               </div>
-              <p className="mt-3 text-[0.62rem] uppercase tracking-[0.4em] text-gold/85">
+              <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-gold font-semibold">
                 Amartara The Resort, Abu Road
               </p>
             </div>
@@ -298,11 +321,11 @@ export function ScratchRevealDate() {
       <button
         type="button"
         onClick={reveal}
-        className={`mt-3 text-[0.58rem] sm:text-[0.65rem] uppercase tracking-[0.3em] text-gold-soft/75 transition-all hover:text-gold hover:scale-105 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
+        className={`mt-4 text-xs sm:text-sm uppercase tracking-[0.16em] text-gold font-semibold px-5 py-2.5 rounded-full border border-gold/45 bg-gold/15 hover:bg-gold/30 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
           revealed ? "pointer-events-none translate-y-1 opacity-0" : "opacity-100"
         }`}
       >
-        {started ? "✨ keep scratching to reveal ✨" : "✨ or tap here to reveal date & play music ✨"}
+        {started ? "✨ Keep scratching to reveal ✨" : "✨ Tap here to reveal date & play music ✨"}
       </button>
     </div>
   );
