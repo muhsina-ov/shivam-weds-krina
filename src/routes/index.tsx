@@ -195,9 +195,9 @@ function Invitation() {
         <div className="relative mx-auto max-w-2xl text-center">
           <QuoteScrub text="“Where two hearts align in love and purpose, families unite and every step becomes blessed.”" />
           <Reveal delay={200}>
-            <div className="mx-auto mt-8 w-24 gold-rule" />
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <div className="space-y-1.5 pt-1 pb-1">
+            <div className="mt-8 space-y-6 text-sm leading-relaxed">
+              {/* Grandparents Blessing */}
+              <div className="space-y-1.5">
                 <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-soft/85 font-medium">
                   With the Blessings of
                 </p>
@@ -208,10 +208,26 @@ function Invitation() {
                   (Grandfather &amp; Grandmother of the Groom)
                 </p>
               </div>
-              <p className="pt-2 text-foreground/80">
-                We warmly invite you to join Dr Shivam Mehta, Dr Krina Morabia, and our family
-                as we celebrate three days of sacred traditions, joyous music, and unconditional love.
-              </p>
+
+              {/* Decorative separator */}
+              <div className="mx-auto flex w-28 items-center gap-2">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/50" />
+                <span className="text-[0.65rem] text-gold/80" aria-hidden>✦</span>
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/50" />
+              </div>
+
+              {/* Parents Invitation */}
+              <div className="space-y-2.5">
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl gold-text font-semibold tracking-wide drop-shadow-[0_2px_15px_rgba(225,190,120,0.35)]">
+                  Mr Amul Mehta <span className="font-light italic text-gold/70">&amp;</span> Mrs Sharvari Mehta
+                </h3>
+                <p className="text-sm sm:text-base leading-relaxed text-foreground/85 max-w-xl mx-auto">
+                  warmly invite you to join{" "}
+                  <strong className="font-medium text-gold-soft">Dr Shivam Mehta</strong>,{" "}
+                  <strong className="font-medium text-gold-soft">Dr Krina Morabia</strong>, and our family
+                  as we celebrate three days of sacred traditions, joyous music, and unconditional love.
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>

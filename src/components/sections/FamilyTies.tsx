@@ -61,28 +61,10 @@ export function FamilyTies() {
           </Reveal>
         </div>
 
-        {/* Blessings & Love from Family */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Grandparents' Blessings — ivory shade */}
-          <Reveal delay={250}>
-            <div className="h-full rounded-2xl border border-gold/50 bg-[oklch(0.94_0.05_85_/_0.97)] p-6 text-center shadow-xl backdrop-blur-sm paper">
-              <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-[oklch(0.42_0.15_30_/_0.45)] bg-[oklch(0.42_0.15_30_/_0.1)] text-[oklch(0.42_0.15_30)]">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <p className="text-[0.62rem] uppercase tracking-[0.3em] text-[oklch(0.45_0.14_33_/_0.85)]">
-                With the Blessings of
-              </p>
-              <h4 className="mt-2 font-display text-2xl text-[oklch(0.42_0.15_30)]">
-                Mr Niranjan Mehta <span className="text-[oklch(0.55_0.14_45_/_0.7)]">&amp;</span> Mrs Asha Mehta
-              </h4>
-              <p className="mt-2 text-xs italic text-[oklch(0.45_0.1_30_/_0.8)]">
-                Grandfather &amp; Grandmother of the Groom
-              </p>
-            </div>
-          </Reveal>
-
+        {/* Love from Family */}
+        <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
           {/* Sister & Brother-in-law — deep rose shade */}
-          <Reveal delay={350}>
+          <Reveal delay={250}>
             <div className="h-full rounded-2xl border border-gold/35 bg-[oklch(0.37_0.14_28_/_0.95)] p-6 text-center backdrop-blur-sm paper">
               <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-soft">
                 <Heart className="h-4 w-4" />
@@ -100,8 +82,8 @@ export function FamilyTies() {
           </Reveal>
 
           {/* Little Ones — deep green shade */}
-          <Reveal delay={450}>
-            <div className="h-full rounded-2xl border border-[oklch(0.7_0.1_150_/_0.45)] bg-[oklch(0.3_0.07_160_/_0.95)] p-6 text-center backdrop-blur-sm paper sm:col-span-2 lg:col-span-1">
+          <Reveal delay={350}>
+            <div className="h-full rounded-2xl border border-[oklch(0.7_0.1_150_/_0.45)] bg-[oklch(0.3_0.07_160_/_0.95)] p-6 text-center backdrop-blur-sm paper">
               <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-soft">
                 <Star className="h-4 w-4" />
               </div>
