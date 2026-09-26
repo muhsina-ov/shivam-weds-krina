@@ -199,7 +199,7 @@ export function Celebrations() {
   return (
     <section
       data-section="celebrations"
-      className="relative px-6 py-28 sm:py-32 bg-gradient-to-b from-[#2a0404] via-[#380606] to-[#250303]"
+      className="relative px-6 py-16 sm:py-20 bg-gradient-to-b from-[#2a0404] via-[#380606] to-[#250303]"
     >
       {/* Subtle radial ambient warmth */}
       <div
@@ -214,12 +214,12 @@ export function Celebrations() {
           className="mx-auto max-w-2xl text-center"
         />
 
-        <p className="mx-auto mt-4 max-w-xl text-center text-sm font-light text-gold-soft/80">
+        <p className="mx-auto mt-3 max-w-xl text-center text-xs sm:text-sm font-light text-gold-soft/80">
           From warm welcomes to the sacred phere, each moment is crafted with love, music, and
           family blessings.
         </p>
 
-        <div className="mt-14 space-y-6 sm:space-y-8">
+        <div className="mt-8 sm:mt-10 space-y-4 sm:space-y-5">
           {CELEBRATION_EVENTS.map((e, i) => (
             <Reveal key={e.slug} delay={i * 80}>
               <EventCard event={e} isFeatured={e.slug === "hastmelap-wedding"} />
@@ -274,7 +274,7 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
     <div
       ref={cardRef}
       className={cn(
-        "group relative overflow-hidden rounded-2xl sm:rounded-3xl border transition-all duration-500",
+        "group relative overflow-hidden rounded-xl sm:rounded-2xl border transition-all duration-500",
         "bg-gradient-to-br from-[#4d0c0c] via-[#3a0707] to-[#280404]",
         isFeatured
           ? "border-gold/60 shadow-[0_20px_50px_-15px_rgba(225,190,120,0.35)]"
@@ -286,127 +286,127 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
         {/* Left Side: Content */}
         <div
           className={cn(
-            "p-6 sm:p-8 flex flex-col justify-between z-10",
-            event.image ? "sm:w-[58%] w-full" : "w-full",
+            "p-4 sm:p-6 flex flex-col justify-between z-10",
+            event.image ? "sm:w-[60%] w-full" : "w-full",
           )}
         >
           <div>
             {/* Eyebrow & Badge */}
-            <span className="text-[0.68rem] uppercase tracking-[0.28em] text-gold-soft font-semibold">
+            <span className="text-[0.62rem] sm:text-[0.66rem] uppercase tracking-[0.25em] text-gold-soft font-semibold">
               {event.badge}
             </span>
 
             {/* Title with optional icon badge */}
-            <div className="mt-1 flex items-center gap-3">
+            <div className="mt-1 flex items-center gap-2.5">
               {event.iconType && (
-                <div className="h-10 w-10 sm:h-12 sm:w-12 shrink-0 rounded-full border border-gold/40 bg-gold/10 p-2 flex items-center justify-center text-gold shadow-[0_0_12px_rgba(225,190,120,0.25)]">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full border border-gold/40 bg-gold/10 p-1.5 flex items-center justify-center text-gold shadow-[0_0_12px_rgba(225,190,120,0.25)]">
                   {event.iconType === "kalash" && (
-                    <span className="text-xl" title="Sacred Kalash">
+                    <span className="text-base sm:text-lg" title="Sacred Kalash">
                       🪔
                     </span>
                   )}
                   {event.iconType === "horse" && (
-                    <span className="text-xl" title="Royal Baarat">
+                    <span className="text-base sm:text-lg" title="Royal Baarat">
                       🐎
                     </span>
                   )}
-                  {event.iconType === "fire" && <Flame className="h-6 w-6 text-gold" />}
+                  {event.iconType === "fire" && <Flame className="h-4 w-4 sm:h-5 sm:w-5 text-gold" />}
                 </div>
               )}
 
               {event.isSangeet ? (
                 <div>
-                  <span className="text-xs uppercase tracking-[0.25em] text-gold-soft/80 block">
+                  <span className="text-[0.62rem] uppercase tracking-[0.22em] text-gold-soft/80 block">
                     The
                   </span>
-                  <h3 className="font-display text-2xl sm:text-3xl text-gold-soft font-normal tracking-wide">
+                  <h3 className="font-display text-xl sm:text-2xl text-gold-soft font-normal tracking-wide">
                     Sangeet{" "}
-                    <span className="font-display italic text-3xl sm:text-4xl text-gold font-light">
+                    <span className="font-display italic text-2xl sm:text-3xl text-gold font-light">
                       Social
                     </span>
                   </h3>
                 </div>
               ) : (
-                <h3 className="font-display text-2xl sm:text-3xl text-gold-soft font-normal tracking-wide">
+                <h3 className="font-display text-xl sm:text-2xl text-gold-soft font-normal tracking-wide">
                   {event.name}
                 </h3>
               )}
             </div>
 
             {/* Gold rule */}
-            <div className="mt-2.5 w-12 h-px bg-gold/40 group-hover:w-24 transition-all duration-500" />
+            <div className="mt-1.5 w-10 h-px bg-gold/40 group-hover:w-20 transition-all duration-500" />
 
             {/* Date & Time */}
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm uppercase tracking-[0.16em] text-gold-soft/90 font-medium">
+            <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs sm:text-[0.82rem] uppercase tracking-[0.14em] text-gold-soft/90 font-medium">
               <span>{event.date}</span>
               <span className="text-gold/40">·</span>
               <span className="text-gold-soft/80">{event.time}</span>
             </div>
 
             {/* Venue Location */}
-            <div className="mt-2 flex items-center gap-1.5 text-xs sm:text-sm text-foreground/90">
+            <div className="mt-1 flex items-center gap-1.5 text-xs sm:text-[0.82rem] text-foreground/90">
               <MapPin className="h-3.5 w-3.5 text-gold shrink-0" />
               <span>{event.place}</span>
             </div>
 
             {/* Description */}
-            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-foreground/75 font-light">
+            <p className="mt-1.5 text-xs sm:text-[0.82rem] leading-relaxed text-foreground/75 font-light">
               {event.note}
             </p>
 
             {/* Nested Mameru Card (Inside Grahshanti) */}
             {event.mameruDetails && (
-              <div className="mt-5 rounded-2xl border border-gold/40 bg-gradient-to-b from-[#3a0808]/95 to-[#2c0505]/95 p-4 sm:p-5 shadow-xl relative overflow-hidden backdrop-blur-md">
-                <div className="flex items-center justify-between gap-3 border-b border-gold/20 pb-3">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-2xl" role="img" aria-label="Mameru Kalash">
+              <div className="mt-3.5 rounded-xl border border-gold/40 bg-gradient-to-b from-[#3a0808]/95 to-[#2c0505]/95 p-3 sm:p-4 shadow-lg relative overflow-hidden backdrop-blur-md">
+                <div className="flex items-center justify-between gap-2 border-b border-gold/20 pb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl" role="img" aria-label="Mameru Kalash">
                       🏺
                     </span>
                     <div>
-                      <h4 className="font-display text-xl sm:text-2xl text-gold-soft font-semibold tracking-wide">
+                      <h4 className="font-display text-lg sm:text-xl text-gold-soft font-semibold tracking-wide">
                         {event.mameruDetails.title}
                       </h4>
-                      <span className="text-[0.68rem] uppercase tracking-[0.25em] text-gold/85 font-medium block">
+                      <span className="text-[0.62rem] uppercase tracking-[0.2em] text-gold/85 font-medium block">
                         {event.mameruDetails.subtitle}
                       </span>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="inline-block rounded-full border border-gold/30 bg-gold/10 px-2.5 py-1 text-[0.62rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
+                    <span className="inline-block rounded-full border border-gold/30 bg-gold/10 px-2 py-0.5 text-[0.62rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
                       🕒 {event.mameruDetails.time}
                     </span>
                   </div>
                 </div>
 
                 {/* Clear, Prominent Mama-Mami and Masi-Masaji Cards */}
-                <div className="mt-3.5 grid gap-3 sm:grid-cols-2">
+                <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
                   {/* Mama & Mami */}
-                  <div className="rounded-xl border border-gold/35 bg-gold/[0.08] p-3 text-left transition-all hover:border-gold/60">
-                    <p className="text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.2em] text-gold font-semibold">
+                  <div className="rounded-lg border border-gold/35 bg-gold/[0.08] p-2 sm:p-2.5 text-left transition-all hover:border-gold/60">
+                    <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.18em] text-gold font-semibold">
                       Mama &amp; Mami
                     </p>
-                    <p className="mt-1 font-display text-sm sm:text-base text-foreground font-medium leading-snug">
+                    <p className="mt-0.5 font-display text-xs sm:text-sm text-foreground font-medium leading-snug">
                       {event.mameruDetails.mamaMami}
                     </p>
                   </div>
 
                   {/* Masi & Masaji */}
-                  <div className="rounded-xl border border-gold/35 bg-gold/[0.08] p-3 text-left transition-all hover:border-gold/60">
-                    <p className="text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.2em] text-gold font-semibold">
+                  <div className="rounded-lg border border-gold/35 bg-gold/[0.08] p-2 sm:p-2.5 text-left transition-all hover:border-gold/60">
+                    <p className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.18em] text-gold font-semibold">
                       Masi &amp; Masaji
                     </p>
-                    <p className="mt-1 font-display text-sm sm:text-base text-foreground font-medium leading-snug">
+                    <p className="mt-0.5 font-display text-xs sm:text-sm text-foreground font-medium leading-snug">
                       {event.mameruDetails.masiMasaji}
                     </p>
                   </div>
                 </div>
 
                 {/* Warm Heartfelt Note & Venue */}
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-gold/15 text-xs text-foreground/85">
-                  <p className="italic text-[0.72rem] sm:text-xs text-foreground/80 leading-relaxed max-w-sm">
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-1.5 pt-2 border-t border-gold/15 text-[0.7rem] sm:text-xs text-foreground/85">
+                  <p className="italic text-[0.7rem] sm:text-xs text-foreground/80 leading-relaxed max-w-sm">
                     {event.mameruDetails.note}
                   </p>
-                  <span className="shrink-0 text-[0.65rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
+                  <span className="shrink-0 text-[0.62rem] sm:text-xs uppercase tracking-wider text-gold-soft font-medium">
                     📍 {event.mameruDetails.place}
                   </span>
                 </div>
@@ -415,8 +415,8 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
           </div>
 
           {/* Bottom Bar: Tags & Direct Save to Calendar */}
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gold/15">
-            <div className="flex flex-wrap items-center gap-2.5 text-[0.62rem] sm:text-xs uppercase tracking-[0.16em] text-gold-soft/80 font-medium">
+          <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-gold/15">
+            <div className="flex flex-wrap items-center gap-2 text-[0.6rem] sm:text-[0.68rem] uppercase tracking-[0.14em] text-gold-soft/80 font-medium">
               {event.tags.map((tag, idx) => (
                 <span key={idx} className="inline-flex items-center gap-1">
                   {tag.icon === "wine" && <Wine className="h-3 w-3 text-gold-soft/90" />}
@@ -440,7 +440,7 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
             <a
               href={icsHref(event)}
               download={`shivam-krina-${event.slug}.ics`}
-              className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-1.5 text-[0.65rem] sm:text-xs uppercase tracking-wider text-gold-soft transition-all duration-300 hover:bg-gold/25 hover:text-gold hover:border-gold/70"
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.62rem] sm:text-xs uppercase tracking-wider text-gold-soft transition-all duration-300 hover:bg-gold/25 hover:text-gold hover:border-gold/70"
             >
               <CalendarPlus className="h-3.5 w-3.5 text-gold" />
               <span>Save to Calendar</span>
@@ -450,7 +450,7 @@ function EventCard({ event, isFeatured }: { event: Event; isFeatured?: boolean }
 
         {/* Right Side: Photo with smooth gradient fade into crimson base */}
         {event.image && (
-          <div className="relative sm:w-[42%] w-full min-h-[220px] sm:min-h-full overflow-hidden order-first sm:order-last">
+          <div className="relative sm:w-[40%] w-full h-44 sm:h-auto sm:min-h-full overflow-hidden order-first sm:order-last shrink-0">
             <img
               src={event.image}
               alt={event.name}

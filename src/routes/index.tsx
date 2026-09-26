@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Heart, Music, Sparkles } from "lucide-react";
 
 import { OpeningSequence } from "@/components/OpeningSequence";
-import { InteractivePortrait } from "@/components/InteractivePortrait";
 import { PalaceReveal } from "@/components/PalaceReveal";
 import { Reveal } from "@/components/Reveal";
 import { ScratchRevealDate } from "@/components/ScratchRevealDate";
@@ -190,7 +189,7 @@ function Invitation() {
       </section>
 
       {/* Blessing */}
-      <section data-section="blessing" className="relative px-6 py-28">
+      <section data-section="blessing" className="relative px-6 py-18 sm:py-24">
         {opened && <RichPetals type="petals" count={7} />}
         <div className="relative mx-auto max-w-2xl text-center">
           <QuoteScrub text="“Where two hearts align in love and purpose, families unite and every step becomes blessed.”" />
@@ -207,6 +206,23 @@ function Invitation() {
                 <p className="text-xs sm:text-sm italic text-foreground/75">
                   (Grandmother &amp; Grandfather of the Groom)
                 </p>
+              </div>
+
+              {/* Decorative separator */}
+              <div className="mx-auto flex w-28 items-center gap-2">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/50" />
+                <span className="text-[0.65rem] text-gold/80" aria-hidden>✦</span>
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/50" />
+              </div>
+
+              {/* In Loving Memory */}
+              <div className="space-y-1.5">
+                <p className="text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-soft/85 font-medium">
+                  In Loving Memory of Our Beloved Nani and Nana
+                </p>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-gold-soft font-semibold tracking-wide drop-shadow-[0_2px_15px_rgba(225,190,120,0.35)]">
+                  Late Mrs. Kirtida Purohit <span className="font-light italic text-gold/70">&amp;</span> Late Mr. Kapilram Purohit
+                </h3>
               </div>
 
               {/* Decorative separator */}
@@ -238,7 +254,7 @@ function Invitation() {
       <FamilyTies />
 
       {/* Countdown */}
-      <section data-section="countdown" className="relative px-6 pb-28">
+      <section data-section="countdown" className="relative px-6 pb-16 sm:pb-20">
         <SectionHeader
           eyebrow="The Countdown"
           title="Until the Celebrations Begin"
@@ -321,8 +337,6 @@ function Invitation() {
       {/* Story — gold thread + selective photos */}
       <StoryTimeline />
 
-      <InteractivePortrait />
-
       {/* Diya ritual — auspicious traditional lighting */}
       <DiyaCeremony />
 
@@ -335,7 +349,7 @@ function Invitation() {
       <PalaceReveal />
 
       {/* Venue Section */}
-      <section data-section="venue" className="relative px-6 py-32">
+      <section data-section="venue" className="relative px-6 py-18 sm:py-24">
         <SectionHeader
           eyebrow="The Venues"
           title="Where Memories Will Be Made"
@@ -359,7 +373,7 @@ function Invitation() {
       </section>
 
       {/* Footer */}
-      <footer className="relative mt-20 overflow-hidden border-t border-gold/20 px-6 pb-14 pt-28 text-center bg-deep/40">
+      <footer className="relative mt-14 overflow-hidden border-t border-gold/20 px-6 pb-12 pt-18 text-center bg-deep/40">
         <div
           aria-hidden
           className="absolute inset-x-0 top-0 mx-auto h-72 max-w-4xl bg-[radial-gradient(ellipse_at_top,oklch(0.86_0.12_84/0.18),transparent_68%)]"
